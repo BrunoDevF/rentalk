@@ -1,5 +1,5 @@
 import express from 'express';
-import { router } from './routes'
+import { categoriesRouter } from './routes/categories.routes'
 
 class Server {
     public app: express.Application;
@@ -19,7 +19,7 @@ class Server {
     }
 
     routes() {
-        this.app.use(router);
+        this.app.use("/categories",categoriesRouter);
     }
 }
 
