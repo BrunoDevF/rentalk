@@ -2,17 +2,24 @@ import { Request, Response, Router } from "express";
 const categoriesRouter = Router();
 // repositories
 import { CategoriesRepository } from "../repositories/CategoriesRepository";
+import { PostgresCategoriesRepository } from "../repositories/PostgresCategoriesRepository";
 // services
 import { CreateCategoryService } from "../services/CreateCategoryService";
 
 // instancia
-const categoriesRepository = new CategoriesRepository();
+const categoriesRepository = new PostgresCategoriesRepository();
 
 categoriesRouter.post("/", (request: Request, response: Response) => {
-  const createCategoryService = new CreateCategoryService(categoriesRepository);
-  createCategoryService.execute(request.body);
+  try {
+    const createCategoryService = new CreateCategoryService(categoriesRepository);
+    
+    createCategoryService.execute(request.body);
+    return response.status(201).send();
+  } catch (error) {
+    console.log(error);
+    return response.status(400).json(error.response);
+  }
 
-  return response.status(201).send();
 });
 
 categoriesRouter.get("/", (request: Request, response: Response) => {

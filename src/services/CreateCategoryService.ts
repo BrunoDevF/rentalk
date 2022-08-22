@@ -1,4 +1,4 @@
-import { CategoriesRepository } from "../repositories/CategoriesRepository";
+import { ICategoryRepository } from "../repositories/interfaces/ICategoriesRepository";
 
 interface ICreateCategoryDTO {
   name: string;
@@ -6,7 +6,7 @@ interface ICreateCategoryDTO {
 }
 
 class CreateCategoryService {
-  constructor(private categoryRepository: CategoriesRepository) {}
+  constructor(private categoryRepository: ICategoryRepository) {}
 
   execute({ description, name }: ICreateCategoryDTO): void {
     const categoryAlreadyExists = this.categoryRepository.findByName(name);
