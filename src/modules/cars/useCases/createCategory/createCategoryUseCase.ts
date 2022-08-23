@@ -1,11 +1,11 @@
-import { ICategoryRepository } from "../repositories/interfaces/ICategoriesRepository";
+import { ICategoryRepository } from "../../repositories/interfaces/ICategoriesRepository";
 
 interface ICreateCategoryDTO {
   name: string;
   description: string;
 }
 
-class CreateCategoryService {
+class CreateCategoryUseCase {
   constructor(private categoryRepository: ICategoryRepository) {}
 
   execute({ description, name }: ICreateCategoryDTO): void {
@@ -19,4 +19,4 @@ class CreateCategoryService {
   }
 }
 
-export { CreateCategoryService };
+export { CreateCategoryUseCase };
