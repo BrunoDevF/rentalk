@@ -7,13 +7,22 @@ export interface ICreateCategoryDTO {
 class CategoriesRepository {
   private categories: Category[];
 
-  constructor() {
+  private static INSTANCE: CategoriesRepository;
+
+  private constructor() {
     this.categories = [];
+  }
+
+  public static getInstance(): CategoriesRepository {
+    if (!CategoriesRepository.INSTANCE) {
+      this.INSTANCE = new CategoriesRepository();
+    }
+    return CategoriesRepository.INSTANCE;
   }
 
   create(data: ICreateCategoryDTO): void {
     const category = new Category(data);
-
+    console.log('ta criando');
     this.categories.push(category);
   }
 
