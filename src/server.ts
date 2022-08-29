@@ -1,8 +1,5 @@
 import express from 'express';
-
-// routes
-import { categoriesRouter } from './routes/categories.routes'
-import { specificationRouter } from './routes/specification.routes'
+import { router } from './routes'
 class Server {
     public app: express.Application;
 
@@ -21,8 +18,7 @@ class Server {
     }
 
     routes() {
-        this.app.use("/categories",categoriesRouter);
-        this.app.use("/specification",specificationRouter);
+        this.app.use(router)
     }
 }
 
