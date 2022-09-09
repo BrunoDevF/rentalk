@@ -1,7 +1,13 @@
 {
     "type": "postgres",
-    "host": "localhost",
-    "username": "",
-    "password": "",
-    "database": "rentx"
+    "host": "172.19.0.2",
+    "port": 5432,
+    "username": "admin",
+    "password": "123",
+    "database": "rentx_db",
+    "entities": ["./src/database/models/**/*.ts"],
+    "migrations": ["./src/database/migrations/*.ts"],
+    "cli": {
+        "migrationsDir": "./src/database/migrations/"
+    }
 }
