@@ -1,10 +1,34 @@
 version: "3"
 
 services:
+  db:
+    image: postgres
+    container_name: rentx_pg
+    restart: always
+    volumes:
+      - pgdata:/data/postgres/
+    
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: 123
+      POSTGRES_DB: rentx_db
+    ports:
+      - 5432:5432
   app:
     build: .
-    container_name: rentx
+    container_name: rentx_node
     ports:  
       - 3333:3333
     volumes:
       - .:/usr/app
+    
+    
+
+volumes:
+  pgdata:
+    driver: local
+
+networks:
+  application:
+    internal: true
+    
