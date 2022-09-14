@@ -7,7 +7,8 @@ services:
     restart: always
     volumes:
       - pgdata:/data/postgres/
-    
+    networks:
+      - postgres-compose-network
     environment:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: 123
@@ -23,12 +24,15 @@ services:
       - .:/usr/app
     
     
+    
 
 volumes:
   pgdata:
     driver: local
-
-networks:
-  application:
-    internal: true
+networks: 
+  postgres-compose-network:
+    driver: bridge
+# networks:
+#   application:
+#     internal: true
     
