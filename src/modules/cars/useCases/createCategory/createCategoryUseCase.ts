@@ -8,17 +8,17 @@ interface ICreateCategoryDTO {
 class CreateCategoryUseCase {
   constructor(
     @inject("CategoriesRepository")
-    private categoryRepository: ICategoryRepository
+    private categoriesRepository: ICategoryRepository
     ) {}
 
   async execute({ description, name }: ICreateCategoryDTO): Promise<void> {
-    const categoryAlreadyExists = await this.categoryRepository.findByName(name);
-    console.log(categoryAlreadyExists);
+    const categoryAlreadyExists = await this.categoriesRepository.findByName(name);
+    
     if (categoryAlreadyExists) {
       throw new Error("Category already exists");
     }
 
-    this.categoryRepository.create({ name, description });
+    this.categoriesRepository.create({ name, description });
   }
 }
 
