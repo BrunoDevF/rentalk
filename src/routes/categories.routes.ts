@@ -8,12 +8,12 @@ var upload = multer({
 // repositories
 import { listCategoriesController } from '../modules/cars/useCases/listCategories'
 // services
-import { createCategoryController } from '../modules/cars/useCases/createCategory'
+import { CreateCategoryController }  from '../modules/cars/useCases/createCategory/createCategoryController'
 import { importCategoryController } from '../modules/cars/useCases/importCategory'
 
-categoriesRouter.post("/", (request: Request, response: Response) => {
-  createCategoryController.handle(request, response);
-});
+const createCategoryController = new CreateCategoryController();
+
+categoriesRouter.post("/", createCategoryController.handle);
 
 categoriesRouter.get("/", (request: Request, response: Response) => {
   return listCategoriesController.handle(request, response);
