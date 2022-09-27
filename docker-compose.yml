@@ -1,27 +1,30 @@
-version: "3"
+version: "3.9"
 
 services:
   db:
     image: postgres
-    container_name: rentx_pg
+    container_name: rentx_pg_2
     restart: always
     volumes:
       - pgdata:/data/postgres/
-    networks:
-      - postgres-compose-network
     environment:
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: 123
-      POSTGRES_DB: rentx_db
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=ignite
+      - POSTGRES_DB=rentx_db_2
     ports:
       - 5432:5432
   app:
     build: .
-    container_name: rentx_node
+    container_name: rentx_node_2
+    restart: always
     ports:  
       - 3333:3333
     volumes:
       - .:/usr/app
+    links:
+      - db
+    depends_on: 
+      - db
     
     
     
@@ -29,10 +32,5 @@ services:
 volumes:
   pgdata:
     driver: local
-networks: 
-  postgres-compose-network:
-    driver: bridge
-# networks:
-#   application:
-#     internal: true
+
     
