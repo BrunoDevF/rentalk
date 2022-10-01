@@ -8,10 +8,10 @@ var upload = multer({
 // repositories
 import { listCategoriesController } from '../modules/cars/useCases/listCategories'
 // services
-import { CreateCategoryController }  from '../modules/cars/useCases/createCategory/createCategoryController'
+import { createCategoryController }  from '../modules/cars/useCases/createCategory'
 import { importCategoryController } from '../modules/cars/useCases/importCategory'
 
-const createCategoryController = new CreateCategoryController();
+
 
 categoriesRouter.post("/", createCategoryController.handle);
 
