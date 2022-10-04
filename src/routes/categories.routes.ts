@@ -15,12 +15,8 @@ import { importCategoryController } from '../modules/cars/useCases/importCategor
 
 categoriesRouter.post("/", createCategoryController.handle);
 
-categoriesRouter.get("/", (request: Request, response: Response) => {
-  return listCategoriesController.handle(request, response);
-});
+categoriesRouter.get("/", listCategoriesController.handle); 
 
-categoriesRouter.post("/import", upload.single("file"), (request: Request, response: Response) => {
-  importCategoryController.handle(request, response);
-});
+categoriesRouter.post("/import", upload.single("file"), importCategoryController.handle);
 
 export { categoriesRouter };

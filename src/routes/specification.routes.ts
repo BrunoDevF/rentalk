@@ -3,8 +3,6 @@ const specificationRouter = Router();
 
 import { createSpecificationController } from '../modules/cars/useCases/createSpecification'
 
-specificationRouter.post("/", (request: Request, response: Response) => {
-  createSpecificationController.handle(request, response);
-});
+specificationRouter.post("/", createSpecificationController.handle);
 
 export { specificationRouter };
