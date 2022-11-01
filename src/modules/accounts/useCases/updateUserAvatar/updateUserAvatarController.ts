@@ -8,8 +8,6 @@ import { CreateUserAvatarUseCase } from "./updateUserAvatarUseCase";
 class CreateUserAvatarController {
   async handle(request: Request, response: Response): Promise<Response> {
     const avatar_file = request.file.filename
-
-    console.log('request user middlewares', request.user);
     const { id } = request.user;
 
     const updateUserAvatarController = container.resolve(CreateUserAvatarUseCase);
