@@ -23,6 +23,9 @@ export class User {
   @Column()
   is_admin: string;
 
+  @Column()
+  avatar: string;
+
   constructor() {
     if(!this.id) {
         this.id = uuidV4()

@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { verify } from 'jsonwebtoken'
-import { AppError } from "src/errors/AppError";
-import { UserRepository } from "src/modules/accounts/repositories/implementations/UserRepository";
+import { AppError } from "../errors/AppError";
+import { UserRepository } from "../modules/accounts/repositories/implementations/UserRepository";
 
 interface IPayload {
     sub: string,
@@ -21,6 +21,11 @@ export async function ensureAuthenticated(req: Request, res: Response, next: Nex
         if(!user) {
             throw new AppError("User doesn't exist", 401);
         }
+
+        req.user = {
+            id: user_id,
+        }
+        next();
     } catch (error) {
         throw new AppError("Invalid Token", 401);
     }

@@ -1,6 +1,6 @@
 import { ICategoryRepository } from "../../repositories/interfaces/ICategoriesRepository";
 import { inject, injectable } from 'tsyringe'
-import { AppError } from "src/errors/AppError";
+import { AppError } from "../../../../errors/AppError";
 interface ICreateCategoryDTO {
   name: string;
   description: string;

@@ -38,14 +38,16 @@ class Server {
 
     resolveErrors() {
         this.app.use(function (err: Error, req: Request, res: Response, next: NextFunction) {
+            // next();
             if(err instanceof AppError){
                 return res.status(err.statusCode).json({ message: err.message });
             }
 
             return response.status(500).json({ 
                 status: 'error',
-                message: `Internal Server Error - ${err.message}` 
+                message: `Internal Server Error - ${err}` 
             })
+            next();
         })
     }
 }
