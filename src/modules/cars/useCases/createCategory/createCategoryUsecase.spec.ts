@@ -1,6 +1,6 @@
 import { CreateCategoryUseCase } from "./createCategoryUseCase"
 import { CategoriesRepositoryInMemory } from './../../repositories/in-memory/CategoriesRepositoryInMemory';
-import { AppError } from "../../../../errors/AppError";
+import { AppError } from "../../../../shared/errors/AppError";
 
 let createCategoryUseCase: CreateCategoryUseCase;
 let categoriesRepositoryInMemory: CategoriesRepositoryInMemory;

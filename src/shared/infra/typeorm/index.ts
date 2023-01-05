@@ -8,6 +8,6 @@ createConnection();
 createConnection()
   .then(() => {
      console.log("Connected to the database")
-     import('../app')
+     import('../../../app')
   })
   .catch(() => new Error("Unable to connect to the database"));

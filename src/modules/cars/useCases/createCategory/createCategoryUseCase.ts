@@ -1,7 +1,7 @@
 import { ICategoryRepository } from "../../repositories/interfaces/ICategoriesRepository";
 import "reflect-metadata"
 import { inject, injectable } from 'tsyringe'
-import { AppError } from "../../../../errors/AppError";
+import { AppError } from "../../../../shared/errors/AppError";
 interface ICreateCategoryDTO {
   name: string;
   description: string;

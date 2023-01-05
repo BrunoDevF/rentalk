@@ -1,11 +1,11 @@
 import { Router } from 'express';
 import multer from 'multer';
-import { createUserController } from '../modules/accounts/useCases/createUser'
-import { createUserAvatarController } from '../modules/accounts/useCases/updateUserAvatar'
+import { createUserController } from 'src/modules/accounts/useCases/createUser';
+import { createUserAvatarController } from 'src/modules/accounts/useCases/updateUserAvatar';
 
-import { ensureAuthenticated } from '../middlewares/ensureAuthenticated'
+import { ensureAuthenticated } from 'src/shared/infra/http/middlewares/ensureAuthenticated';
 
-import uploadConfig from '../config/upload'
+import uploadConfig from '../../../../config/upload'
 
 const UserRouter = Router();
 
