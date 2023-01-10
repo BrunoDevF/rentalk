@@ -11,7 +11,7 @@ import { importCategoryController } from "../../../../modules/cars/useCases/impo
 import { listCategoriesController } from "../../../../modules/cars/useCases/listCategories";
 
 
-categoriesRouter.post("/", createCategoryController.handle);
+categoriesRouter.post("/", (req: Request, res: Response) => createCategoryController.handle(req, res));
 
 categoriesRouter.get("/", listCategoriesController.handle); 
 

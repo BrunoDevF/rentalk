@@ -18,7 +18,7 @@ class Server {
         this.express();
         this.json();
         this.routes();
-        this.resolveErrors();
+        // this.resolveErrors();
         this.swagger();
     }
 
@@ -40,15 +40,15 @@ class Server {
 
     resolveErrors() {
         this.app.use(function (err: Error, req: Request, res: Response, next: NextFunction) {
-            // next();
+            next();
             if(err instanceof AppError){
                 return res.status(err.statusCode).json({ message: err.message });
             }
 
-            return response.status(500).json({ 
-                status: 'error',
-                message: `Internal Server Error - ${err}` 
-            })
+            // return response.status(500).json({ 
+            //     status: 'error',
+            //     message: `Internal Server Error - ${err}` 
+            // })
             next();
         })
     }
