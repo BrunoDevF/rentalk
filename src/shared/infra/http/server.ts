@@ -28,7 +28,6 @@ class Server {
 
     swagger() {
         this.app.use('/api-docs/swagger', swaggerUi.serve, swaggerUi.setup(swaggerFile));
-        
     }
     
     json() {

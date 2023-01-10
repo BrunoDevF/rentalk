@@ -6,9 +6,9 @@ var upload = multer({
   dest: "./tmp",
 })
 
-import { createCategoryController } from "src/modules/cars/useCases/createCategory";
-import { importCategoryController } from "src/modules/cars/useCases/importCategory";
-import { listCategoriesController } from "src/modules/cars/useCases/listCategories";
+import { createCategoryController } from "../../../../modules/cars/useCases/createCategory";
+import { importCategoryController } from "../../../../modules/cars/useCases/importCategory";
+import { listCategoriesController } from "../../../../modules/cars/useCases/listCategories";
 
 
 categoriesRouter.post("/", createCategoryController.handle);
