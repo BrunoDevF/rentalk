@@ -1,27 +1,37 @@
 import { ICategoryRepository } from "../../repositories/interfaces/ICategoriesRepository";
-import "reflect-metadata"
-import { inject, injectable } from 'tsyringe'
+import "reflect-metadata";
+
+import { inject, injectable } from "tsyringe";
+
 import { AppError } from "../../../../shared/errors/AppError";
+
 interface ICreateCategoryDTO {
   name: string;
   description: string;
 }
-@injectable()
-class CreateCategoryUseCase {
+
+// @injectable()
+export class CreateCategoryUseCase {
   constructor(
-    @inject("CategoriesRepository")
+    // @inject("CategoriesRepositoryInMemory")
     private categoriesRepository: ICategoryRepository
-    ) {}
+  ) {}
 
-  async execute({ description, name }: ICreateCategoryDTO): Promise<void> {
-    const categoryAlreadyExists = await this.categoriesRepository.findByName(name);
-    
-    if (categoryAlreadyExists) {
-      throw new AppError("Category already exists");
+  async execute({ description, name }: ICreateCategoryDTO): Promise<any> {
+    try {
+      const categoryAlreadyExists = await this.categoriesRepository.findByName(
+        name
+      );
+  
+      if (categoryAlreadyExists) {
+        throw new AppError("Category already exists");
+      }
+  
+      const category = this.categoriesRepository.create({ name, description });
+      return {has_error: false, error:'', data: category}
+    } catch (error) {
+      return {has_error: true, error:error}
     }
-
-    this.categoriesRepository.create({ name, description });
   }
 }
 
-export { CreateCategoryUseCase };
