@@ -3,15 +3,49 @@ import { ICreateCarDTO } from '../../dtos/ICreateCarDTO';
 
 import { ICarsRepository } from '../interfaces/ICarsRepository';
 import { Car } from '../../infra/typeorm/entities/Car';
-import { Repository } from 'typeorm';
+import { getConnection, getConnectionOptions, Repository } from 'typeorm';
+import { IRequest } from '../../useCases/listAvailableCars/useCase'
 import { getRepository } from 'typeorm';
 export class CarsRepositoryInMemory implements ICarsRepository {
-    // cars: Car[] = [];
+    cars: Car[] = [];
 
     private repository: Repository<Car>;
 
     constructor() {
         this.repository = getRepository(Car)
+    }
+    async findAvailable({ brand, category_id, name }: IRequest): Promise<Car[]> {
+        // const all = this.cars
+        // .filter(car => {
+        //     if(
+        //         car.available == true ||
+        //         (brand && car.brand == brand) || 
+        //         (category_id && car.category_id == category_id) || 
+        //         (name && car.name == name)
+        //     ) {
+        //         return car
+        //     }
+        //     return null
+        // })
+        // return all;
+        const carsQuery = await this.repository
+        .createQueryBuilder("c")
+        .where("available = :available", { available: true })
+
+        if(brand) {
+            carsQuery.andWhere("c.brand = :brand", { brand })
+        }
+
+        if(name) {
+            carsQuery.andWhere("c.name = :name", { name })
+        }
+
+        if(category_id) {
+            carsQuery.andWhere("c.category_id = :category_id", { category_id })
+        }
+
+        const cars = await carsQuery.getMany();
+        return cars
     }
     
     async findByLicensePlate(license_plate: string): Promise<Car> {
