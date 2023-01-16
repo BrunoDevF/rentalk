@@ -1,4 +1,4 @@
-import { getRepository, Repository } from "typeorm";
+import { getConnection, getRepository, Repository } from "typeorm";
 import { Category } from "../../infra/typeorm/entities/Category";
 import { ICategoryRepository, ICreateCategoryDTO } from "../interfaces/ICategoriesRepository";
 export class CategoriesRepositoryInMemory implements ICategoryRepository {
@@ -7,7 +7,7 @@ export class CategoriesRepositoryInMemory implements ICategoryRepository {
     private repository: Repository<Category>;
 
     constructor() {
-        this.repository = getRepository(Category)
+        this.repository = getConnection().getRepository(Category)
     }
     
     async findByName(name: string): Promise<Category | any> {
