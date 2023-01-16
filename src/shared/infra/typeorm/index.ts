@@ -12,13 +12,3 @@ createConnection()
      import('../../../app')
   })
   .catch(() => new Error("Unable to connect to the database"));
-
-export default async (host = "database"): Promise<Connection> => {
-   const defaultOptions = await getConnectionOptions();
-   
-   return createConnection(
-      Object.assign(defaultOptions, {
-         host,
-      })
-   )
-}
