@@ -1,3 +1,4 @@
+import "reflect-metadata"
 import { CreateCarUseCase } from "./useCase"
 import { CarsRepositoryInMemory } from '../../repositories/in-memory/CarsRepositoryInMemory';
 import { AppError } from '../../../../shared/errors/AppError';

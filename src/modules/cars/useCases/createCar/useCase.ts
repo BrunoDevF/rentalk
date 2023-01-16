@@ -31,12 +31,11 @@ class CreateCarUseCase {
     fine_amount,
   }: IRequest): Promise<Car> {
 
-    // const carAlreadyExists = await this.carsRepository.findByLicensePlate(
-    //   license_plate
-    // );
-    // console.log("bendito usecase", carAlreadyExists);
+    const carAlreadyExists = await this.carsRepository.findByLicensePlate(
+      license_plate
+    );
 
-    // if (carAlreadyExists) throw new AppError("Car already exists.");
+    if (carAlreadyExists) throw new AppError("Car already exists.");
 
     console.log("usecase create car");
     const car = await this.carsRepository.create({
