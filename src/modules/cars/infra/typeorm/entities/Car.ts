@@ -48,7 +48,7 @@ class Car {
     joinColumns: [{ name: "car_id" }],
     inverseJoinColumns: [{ name: "specification_id" }],
   })
-  specifications: Specification[];
+  specifications?: Specification[];
 
   @Column()
   category_id: string;

@@ -6,4 +6,5 @@ export interface ICarsRepository {
   findByLicensePlate(license_plate: string): Promise<Car> 
   create(data: ICreateCarDTO): Promise<Car>;
   findAvailable({ brand, category_id, name }: IRequest): Promise<Car[]>
+  findById(id: string): Promise<Car>
 }

@@ -14,6 +14,10 @@ export class CarsRepositoryInMemory implements ICarsRepository {
     constructor() {
         this.repository = getRepository(Car)
     }
+    async findById(id: string): Promise<Car> {
+        const car = await this.repository.findOne(id)
+        return car
+    }
     async findAvailable({ brand, category_id, name }: IRequest): Promise<Car[]> {
         // const all = this.cars
         // .filter(car => {
@@ -61,7 +65,9 @@ export class CarsRepositoryInMemory implements ICarsRepository {
         fine_amount,
         license_plate,
         daily_rate,
-        name
+        name,
+        specifications,
+        id
     }: ICreateCarDTO): Promise<any> {
         let car = new Car({
             brand,
@@ -70,7 +76,8 @@ export class CarsRepositoryInMemory implements ICarsRepository {
             fine_amount,
             license_plate,
             daily_rate,
-            name
+            name,
+
         });
         console.log('car repository => ', car);
 
