@@ -8,6 +8,8 @@ import { IUserRepository } from '../../modules/accounts/repositories/interfaces/
 import { UserRepository } from '../../modules/accounts/infra/typeorm/repositories/UserRepository'
 import { ICarsRepository } from '../../modules/cars/repositories/interfaces/ICarsRepository';
 import { CarsRepositoryInMemory } from '../../modules/cars/repositories/in-memory/CarsRepositoryInMemory';
+import { ICarsImageRepository } from "src/modules/cars/repositories/interfaces/ICarsImageRepository";
+import { CarsImageRepository } from "src/modules/cars/repositories/in-memory/CarsImageRepository";
 
 container.registerSingleton<ICategoryRepository>(
   "CategoriesRepositoryInMemory",
@@ -27,4 +29,9 @@ container.registerSingleton<IUserRepository>(
 container.registerSingleton<ICarsRepository>(
   "CarsRepository",
   CarsRepositoryInMemory
+)
+//
+container.registerSingleton<ICarsImageRepository>(
+  "CarsImagesRepository",
+  CarsImageRepository
 )
