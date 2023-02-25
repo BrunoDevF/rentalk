@@ -41,6 +41,11 @@ class AuthenticateUserCase {
             expiresIn: "1d"
         });
 
+        // Refresh token
+        // - recarregar token quando expirado
+        // - salvar token no banco
+        // - usuario pode ter mais de um token. ex.: token para celular, pc e entre outros dispositivos
+
         return {
             user: {
                 email: user.email,

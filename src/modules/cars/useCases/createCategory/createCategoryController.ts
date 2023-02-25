@@ -12,14 +12,16 @@ const createCategoryUseCase = new CreateCategoryUseCase(
 
 
 class CreateCategoryController {
-  constructor(
-    private createCategoryUseCase: CreateCategoryUseCase
-  ){ }
+  // constructor(
+  //   private createCategoryUseCase: CreateCategoryUseCase
+  // ){ }
   async handle(request: Request, response: Response): Promise<Response> {
     const { name, description } = request.body;
-    // console.log(createCategoryUseCase.execute({ name, description }));
+    console.log({ name, description });
+
+    const createCategoryUseCase = container.resolve(CreateCategoryUseCase);
     
-    const result = await this.createCategoryUseCase.execute({ name, description });
+    const result = await createCategoryUseCase.execute({ name, description });
     if(result.has_error) {
       return response.status(400).json(result.error);
     }

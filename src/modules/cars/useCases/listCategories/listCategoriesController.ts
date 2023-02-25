@@ -7,6 +7,6 @@ export class ListCategoriesController {
     const listCategoriesUseCase = container.resolve(ListCategoriesUseCase)
     const result = await listCategoriesUseCase.execute();
 
-    return response.status(201).json(result);
+    return response.status(200).json({has_error: false, data: result});
   }
 }

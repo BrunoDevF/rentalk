@@ -7,7 +7,7 @@ export class CategoriesRepositoryInMemory implements ICategoryRepository {
     private repository: Repository<Category>;
 
     constructor() {
-        this.repository = getConnection().getRepository(Category)
+        this.repository = getRepository(Category)
     }
     
     async findByName(name: string): Promise<Category | any> {
@@ -15,16 +15,14 @@ export class CategoriesRepositoryInMemory implements ICategoryRepository {
         return category
     }
     async list(): Promise<Category[]> {
-        const all = this.categories;
+        const all = await this.repository.find()
         return all;
     }
     async create({ description, name }: ICreateCategoryDTO): Promise<Category> {
         const category = new Category({ description, name });
         const cat = await this.repository.save(category)
         console.log('teste categoria', cat);
-        // this.cars.push(car)
-        return category
-        // this.categories.push(category);
+        return cat
     }
 
 }

@@ -4,6 +4,7 @@ import dayjs from "dayjs";
 import { Rental } from "../../infra/typeorm/entities/Rental";
 import { IDateProvider } from "../../../../shared/container/providers/dateProvider/IDateProvider";
 import { inject, injectable } from "tsyringe";
+import { ICarsRepository } from "src/modules/cars/repositories/interfaces/ICarsRepository";
 
 interface IRequest {
   user_id: string;
@@ -16,7 +17,9 @@ export class CreateRentalUseCase {
     @inject("RentalsRepository")
     private rentalsRepository: IRentalsRepository,
     @inject("DayJsDateProvider")
-    private dateProvider: IDateProvider
+    private dateProvider: IDateProvider,
+    @inject("CarsRepository")
+    private carsRepository: ICarsRepository
   ) {}
 
   async execute({
@@ -55,6 +58,8 @@ export class CreateRentalUseCase {
       expected_return_date,
       user_id,
     });
+
+    // await this.carsRepository.
 
     return rental;
   }

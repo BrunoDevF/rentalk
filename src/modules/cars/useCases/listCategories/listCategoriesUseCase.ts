@@ -5,7 +5,7 @@ import { ICategoryRepository } from "../../repositories/interfaces/ICategoriesRe
 @injectable()
 export class ListCategoriesUseCase {
   constructor(
-    @inject("CategoriesRepository")
+    @inject("CategoriesRepositoryInMemory")
     private categoryRepository: ICategoryRepository) {}
 
   async execute(): Promise<Category[]> {

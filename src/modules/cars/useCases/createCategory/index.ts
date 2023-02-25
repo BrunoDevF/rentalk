@@ -9,7 +9,7 @@ const createCategoryUseCase = new CreateCategoryUseCase(
 );
 
 const createCategoryController = new CreateCategoryController(
-    createCategoryUseCase
+    // createCategoryUseCase
 );
 
 export { createCategoryController }

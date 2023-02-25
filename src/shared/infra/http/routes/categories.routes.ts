@@ -14,9 +14,9 @@ import { ensureAuthenticated } from "../middlewares/ensureAuthenticated";
 
 categoriesRouter.post(
   "/",
-  ensureAuthenticated,
-  ensureAdmin,
-  (req: Request, res: Response) => createCategoryController.handle(req, res)
+  // ensureAuthenticated,
+  // ensureAdmin,
+  (request: Request, response: Response) => createCategoryController.handle(request, response)
 );
 
 categoriesRouter.get("/", listCategoriesController.handle);
