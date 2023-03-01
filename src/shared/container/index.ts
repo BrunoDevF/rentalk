@@ -14,6 +14,8 @@ import { IRentalsRepository } from '../../modules/rentals/infra/typeorm/interfac
 import { RentalsRepository } from '../../modules/rentals/infra/typeorm/repositories/RentalsRepository';
 import { IDateProvider } from "./providers/dateProvider/IDateProvider";
 import { DayJsDateProvider } from "./providers/dateProvider/implementations/dayJsDateProvider";
+import { IMailProvider } from "./providers/MailProvider/interface/MailProvider";
+import { EtherealMailProvider } from './providers/MailProvider/implementations/EtherealMailProvider';
 
 container.registerSingleton<ICategoryRepository>(
   "CategoriesRepositoryInMemory",
@@ -48,4 +50,9 @@ container.registerSingleton<IRentalsRepository>(
 container.registerSingleton<IDateProvider>(
   "DayJsDateProvider",
   DayJsDateProvider
+)
+
+container.registerSingleton<IMailProvider>(
+  "EtherealMailProvider",
+  EtherealMailProvider
 )

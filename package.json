@@ -37,6 +37,7 @@
     "typescript": "*"
   },
   "dependencies": {
+    "aws-sdk": "^2.1325.0",
     "bcrypt": "^5.1.0",
     "csv-parse": "^5.3.0",
     "dayjs": "^1.11.7",
@@ -44,6 +45,7 @@
     "express-async-errors": "^3.1.1",
     "jsonwebtoken": "^8.5.1",
     "multer": "^1.4.5-lts.1",
+    "nodemailer": "^6.9.1",
     "pg": "^8.8.0",
     "reflect-metadata": "^0.1.13",
     "swagger-ui-express": "^4.5.0",
