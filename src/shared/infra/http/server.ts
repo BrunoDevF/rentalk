@@ -10,6 +10,8 @@ import swaggerUi from 'swagger-ui-express';
 import swaggerFile from '../../../swagger.json'
 import { AppError } from '../../errors/AppError';
 import { router } from './routes';
+import auth from 'src/config/auth';
+import upload from 'src/config/upload';
 
 class Server {
     public app: express.Application;
@@ -20,6 +22,7 @@ class Server {
         this.routes();
         // this.resolveErrors();
         this.swagger();
+        this.static()
     }
 
     express() {
@@ -36,6 +39,10 @@ class Server {
 
     routes() {
         this.app.use(router)
+    }
+    static() {
+        this.app.use("/avatar", express.static(`${upload.tmpFolder}/avatar`))
+        this.app.use("/cars", express.static(`${upload.tmpFolder}/cars`))
     }
 
     resolveErrors() {
